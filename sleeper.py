@@ -10,6 +10,6 @@ class Sleeper:
     def sleep_until_ready():
         current_second = datetime.datetime.now().second
         prepare_time = 60 - current_second
-        LOG.countdown(prepare_time + 7)
+        LOG.countdown(prepare_time + 6)
 
 

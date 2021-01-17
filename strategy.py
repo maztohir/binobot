@@ -18,7 +18,7 @@ class Strategy:
 
     def add_losses(self):
         
-        if self.current_loss > 3:
+        if self.current_loss > 2:
             self.current_loss = 0
         else:
             self.current_loss += 1

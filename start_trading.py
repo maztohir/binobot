@@ -3,6 +3,7 @@ from selenium import webdriver
 from trader import Trader
 from strategy import Strategy
 from sleeper import Sleeper
+from trade_area import TradeArea
 
 from dotenv import load_dotenv
 
@@ -18,6 +19,7 @@ browser.close()
 browser.session_id = SESSION
 
 trader = Trader(browser)
+trade_area = TradeArea(browser)
 strategy = Strategy()
 
 # Trade will always start at minute + 5s
@@ -26,6 +28,8 @@ if datetime.datetime.now().second >= 25:
 
 i = 1
 while True: 
+    trade_area.clear_area()
+    Sleeper.sleep(2)
     balance = trader.trade(strategy.suggested_price, method=strategy.suggested_method, iteration=i)
 
     if balance.is_loss():

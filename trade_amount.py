@@ -10,7 +10,7 @@ class TradeAmount:
         amount_value = self._browser.find_element_by_css_selector('#amount-counter input')
         amount_value.send_keys(Keys.COMMAND + "a" + Keys.DELETE)
         amount_value.send_keys(value)
-        LOG.countdown(3)
+        LOG.countdown(2)
         print(' setting trade amount to '+str(value))
         assert value == int(self.get_value())
 
