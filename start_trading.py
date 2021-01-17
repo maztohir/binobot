@@ -34,6 +34,8 @@ while True:
 
     if balance.is_loss():
         strategy.add_losses()
+    elif balance.profit == 0:
+        pass
     else:
         strategy.current_loss = 0
 
