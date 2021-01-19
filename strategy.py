@@ -1,14 +1,16 @@
 class Strategy:
 
-    TRADE_INITIAL_AMOUNT = 14000
+    TRADE_INITIAL_AMOUNT = 20000
     PREDICT_HIGHER = 'predict_higher'
     PREDICT_LOWER = 'predict_lower'
-    MAXIMUM_COMPENSATION_TIME = 3
+    MAXIMUM_COMPENSATION_TIME = 7
+    MAJORITY_OPINION_SCORE_TOLLERANCE = 70
 
     def __init__(self, browser):
         self.current_loss = 0
         self.current_price = self.TRADE_INITIAL_AMOUNT
         self._browser = browser
+        self._have_buy = False
 
     @property
     def suggested_price(self):
@@ -16,10 +18,26 @@ class Strategy:
 
     @property
     def suggested_method(self):
-        if self.is_high_chance_to_be_negative():
+        if self.is_high_chance_to_be_positive():
+            print('Follow majority open to higher')
+            return self.PREDICT_HIGHER
+        elif self.is_high_chance_to_be_negative():
+            print('Follow majority open to lower')
             return self.PREDICT_LOWER
         else:
+            print('Just default')
+            return self.default_method
+
+    @property
+    def default_method(self):
+        if not self._have_buy:
+            self._have_buy = True
+            print('Open higher')
             return self.PREDICT_HIGHER
+        else:
+            self._have_buy = False
+            print('Open lower')
+            return self.PREDICT_LOWER
 
     @property
     def positive_ratio(self):
@@ -28,11 +46,11 @@ class Strategy:
         return int(ratio_str.replace(' ','').replace('%',''))
 
     def is_high_chance_to_be_positive(self):
-        return self.positive_ratio > 75
+        return self.positive_ratio > self.MAJORITY_OPINION_SCORE_TOLLERANCE
     
     def is_high_chance_to_be_negative(self):
         negative_ratio = 100 - self.positive_ratio
-        return negative_ratio > 75
+        return negative_ratio > self.MAJORITY_OPINION_SCORE_TOLLERANCE
 
     def add_losses(self):
         if self.current_loss >= self.MAXIMUM_COMPENSATION_TIME:
