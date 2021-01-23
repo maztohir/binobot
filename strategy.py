@@ -6,6 +6,7 @@ class Strategy:
     PREDICT_LOWER = 'predict_lower'
     MAXIMUM_LOSSES = 3
     MAJORITY_OPINION_SCORE_TOLLERANCE = 70
+    COMPENSATION_TIME = 2.2
 
     def __init__(self, browser):
         self.current_loss = 0
@@ -16,7 +17,8 @@ class Strategy:
 
     @property
     def suggested_price(self):
-        return self.TRADE_INITIAL_AMOUNT * (2 ** self.current_loss)
+        calculated_price = self.TRADE_INITIAL_AMOUNT * (self.COMPENSATION_TIME ** self.current_loss)
+        return round(calculated_price)
 
     @property
     def suggested_method(self):
