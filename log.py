@@ -3,17 +3,20 @@ import time
 
 class LOG:
 
-    def trade_start(balance_str, open_trade_amount, iteration):
+    def trade_start(balance_str, open_trade_amount, iteration, method):
         print('')
-        print(f'---------- TRADE START {iteration} -------------')
+        print('.')
+        print('.')
+        print(f'---------- TRADE START: ITERATION {iteration} -------------')
         print(f'BALANCE BEFORE TRADE    : {balance_str}')
         print(f'OPEN TRADE AMOUNT       : {open_trade_amount}')
+        print(f'METHOD                  : {method}')
         print('.')
         print('.')
 
     def countdown(second):
         for i in range(second,0,-1):
-            sys.stdout.write('\rWaiting ' + str(i) + 's')
+            sys.stdout.write('\rWaiting ' + str(i) + 's. ')
             sys.stdout.flush()
             time.sleep(1)
 
@@ -27,7 +30,16 @@ class LOG:
         else:
             print(f'{LOGColor.FAIL}LOSS                    : {loss}{LOGColor.ENDC}')
         print('---------- TRADE END -------------')
+        print('')
 
+    def init_strategy():
+        print('')
+        print('')
+        print('-------')
+        print('initiating strategy..')
+    
+    def error(string):
+        print(f'{LOGColor.FAIL}{string}{LOGColor.ENDC}')
 
 class LOGColor:
     HEADER = '\033[95m'

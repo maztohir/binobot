@@ -1,3 +1,4 @@
+from balance import Balance
 class Strategy:
 
     TRADE_INITIAL_AMOUNT = 20000
@@ -11,6 +12,7 @@ class Strategy:
         self.current_price = self.TRADE_INITIAL_AMOUNT
         self._browser = browser
         self._have_buy = False
+        self.additional_wait = 0
 
     @property
     def suggested_price(self):
@@ -57,3 +59,15 @@ class Strategy:
             self.current_loss = 0
         else:
             self.current_loss += 1
+
+    def response_result(self, balance:Balance):
+        if balance.is_loss():
+            self.add_losses()
+            self.additional_wait = 0
+
+        elif balance.profit == 0:
+            self.additional_wait = 0
+
+        else:
+            self.current_loss = 0
+            self.additional_wait = 0

@@ -14,24 +14,26 @@ class Trader:
 
     def predict_higher(self):
         btn = self._browser.find_element_by_css_selector('#qa_trading_dealUpButton button')
-        btn.click()
+        # btn.click()
 
     def predict_lower(self):
         btn = self._browser.find_element_by_css_selector('#qa_trading_dealDownButton button')
-        btn.click()
+        # btn.click()
 
     def trade(self, price, method=Strategy.PREDICT_HIGHER, iteration=1, additional_wait=0) -> Balance:
         self._trade_amount.set_value(price)
 
         before_trade_balance = self._balance.current_balance
-        LOG.trade_start(self._balance.current_balance_str, price, iteration)
+        LOG.trade_start(self._balance.current_balance_str, price, iteration, method)
+
+        if not Sleeper.is_time_to_trade():
+            Sleeper.sleep_until_ready()
 
         if method == Strategy.PREDICT_HIGHER:
             self.predict_higher()
         else:
             self.predict_lower()
         
-        # Next Trade will always start at minute + 5s
         Sleeper.sleep_until_ready()
         if additional_wait:
             Sleeper.sleep(additional_wait)
