@@ -4,7 +4,7 @@ class Strategy:
     TRADE_INITIAL_AMOUNT = 20000
     PREDICT_HIGHER = 'predict_higher'
     PREDICT_LOWER = 'predict_lower'
-    MAXIMUM_LOSSES = 3
+    MAXIMUM_LOSSES = 4
     MAJORITY_OPINION_SCORE_TOLLERANCE = 70
     COMPENSATION_TIME = 2.2
 
