@@ -14,11 +14,11 @@ class Trader:
 
     def predict_higher(self):
         btn = self._browser.find_element_by_css_selector('#qa_trading_dealUpButton button')
-        # btn.click()
+        btn.click()
 
     def predict_lower(self):
         btn = self._browser.find_element_by_css_selector('#qa_trading_dealDownButton button')
-        # btn.click()
+        btn.click()
 
     def trade(self, price, method=Strategy.PREDICT_HIGHER, iteration=1, additional_wait=0) -> Balance:
         self._trade_amount.set_value(price)

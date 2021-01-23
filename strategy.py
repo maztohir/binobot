@@ -27,7 +27,7 @@ class Strategy:
             print('Follow majority open to lower')
             return self.PREDICT_LOWER
         else:
-            print('Just default')
+            print('Decide to use default method to open')
             return self.default_method
 
     @property
