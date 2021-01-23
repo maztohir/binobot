@@ -19,7 +19,7 @@ browser.close()
 browser.session_id = SESSION
 
 
-strategy = Strategy()
+strategy = Strategy(browser)
 trade_amount = TradeAmount(browser)
 
 for i in range(20):

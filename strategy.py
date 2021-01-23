@@ -4,7 +4,7 @@ class Strategy:
     TRADE_INITIAL_AMOUNT = 20000
     PREDICT_HIGHER = 'predict_higher'
     PREDICT_LOWER = 'predict_lower'
-    MAXIMUM_COMPENSATION_TIME = 3
+    MAXIMUM_LOSSES = 3
     MAJORITY_OPINION_SCORE_TOLLERANCE = 70
 
     def __init__(self, browser):
@@ -55,10 +55,10 @@ class Strategy:
         return negative_ratio > self.MAJORITY_OPINION_SCORE_TOLLERANCE
 
     def add_losses(self):
-        if self.current_loss >= self.MAXIMUM_COMPENSATION_TIME:
-            self.current_loss = 0
-        else:
+        if self.current_loss < self.MAXIMUM_LOSSES-1:
             self.current_loss += 1
+        else:
+            self.current_loss = 0
 
     def response_result(self, balance:Balance):
         if balance.is_loss():
