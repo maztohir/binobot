@@ -7,18 +7,23 @@ from sleeper import Sleeper
 
 class Trader:
 
-    def __init__(self, browser):
+    def __init__(self, browser, dry_run=False):
         self._browser = browser
         self._trade_amount = TradeAmount(browser)
         self._balance = Balance(browser)
+        self._dry_run = dry_run
 
     def predict_higher(self):
         btn = self._browser.find_element_by_css_selector('#qa_trading_dealUpButton button')
-        btn.click()
+        self.execute(btn)
 
     def predict_lower(self):
         btn = self._browser.find_element_by_css_selector('#qa_trading_dealDownButton button')
-        btn.click()
+        self.execute(btn)
+
+    def execute(self, btn):
+        if not self._dry_run:
+            btn.click()
 
     def trade(self, price, method=Strategy.PREDICT_HIGHER, iteration=1, additional_wait=0) -> Balance:
         self._trade_amount.set_value(price)

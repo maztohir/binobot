@@ -3,3 +3,6 @@ browser:
 
 trading:
 	python3 start_trading.py
+
+test_trading:
+	python3 start_trading.py --dry-run

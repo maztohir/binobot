@@ -1,3 +1,4 @@
+from args import Args
 from selenium import webdriver
 
 from trader import Trader
@@ -9,17 +10,18 @@ from log import LOG
 from dotenv import load_dotenv
 
 import os
-import datetime
 
 load_dotenv()
 HOST = os.getenv("HOST")
 SESSION = os.getenv("SESSION")
 
+args = Args().parse()
+
 browser = webdriver.Remote(command_executor=HOST, desired_capabilities={})
 browser.close()
 browser.session_id = SESSION
 
-trader = Trader(browser)
+trader = Trader(browser, dry_run=args.dry_run)
 trade_area = TradeArea(browser)
 strategy = Strategy(browser)
 

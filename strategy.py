@@ -4,7 +4,7 @@ class Strategy:
     TRADE_INITIAL_AMOUNT = 20000
     PREDICT_HIGHER = 'predict_higher'
     PREDICT_LOWER = 'predict_lower'
-    MAXIMUM_COMPENSATION_TIME = 7
+    MAXIMUM_COMPENSATION_TIME = 3
     MAJORITY_OPINION_SCORE_TOLLERANCE = 70
 
     def __init__(self, browser):
