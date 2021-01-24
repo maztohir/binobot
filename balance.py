@@ -15,7 +15,7 @@ class Balance:
     @property
     def current_balance(self):
         balance_value = self.current_balance_str.lower().replace('rp','').replace('.00','').replace(',','')
-        return int(balance_value)
+        return float(balance_value)
 
     def set_previous_balance(self, value):
         self._previous_balance = value

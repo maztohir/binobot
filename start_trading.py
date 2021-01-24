@@ -36,5 +36,5 @@ while True:
     strategy.response_result(balance)
 
     i += 1
-    if i > 100:
+    if i > 1000:
         break
