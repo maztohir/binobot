@@ -1,9 +1,9 @@
 from selenium import webdriver
 
-from trader import Trader
-from strategy import Strategy
-from sleeper import Sleeper
-from trade_amount import TradeAmount
+from src.trader import Trader
+from src.strategy import Strategy
+from src.sleeper import Sleeper
+from src.trade_amount import TradeAmount
 
 from dotenv import load_dotenv
 

@@ -1,4 +1,4 @@
-from balance import Balance
+from src.balance import Balance
 class Strategy:
 
     TRADE_INITIAL_AMOUNT = 20000

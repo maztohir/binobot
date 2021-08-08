@@ -1,5 +1,5 @@
 from selenium.webdriver.common.keys import Keys
-from log import LOG
+from src.log import LOG
 
 from retrying import retry
 class TradeAmount:

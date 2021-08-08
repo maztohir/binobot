@@ -1,9 +1,9 @@
 from datetime import time
-from strategy import Strategy
-from trade_amount import TradeAmount
-from balance import Balance
-from log import LOG
-from sleeper import Sleeper
+from src.strategy import Strategy
+from src.trade_amount import TradeAmount
+from src.balance import Balance
+from src.log import LOG
+from src.sleeper import Sleeper
 
 class Trader:
 

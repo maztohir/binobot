@@ -1,13 +1,13 @@
-from args import Args
-from selenium import webdriver
+from src.args import Args
 
-from trader import Trader
-from strategy import Strategy
-from sleeper import Sleeper
-from trade_area import TradeArea
-from log import LOG
+from src.trader import Trader
+from src.strategy import Strategy
+from src.sleeper import Sleeper
+from src.trade_area import TradeArea
+from src.log import LOG
 
 from dotenv import load_dotenv
+from selenium import webdriver
 
 import os
 

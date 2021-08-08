@@ -1,4 +1,4 @@
-from log import LOG
+from src.log import LOG
 
 import datetime
 
